@@ -1,0 +1,30 @@
+
+<div class="col-md-5">
+  <h4> Showing details for {{student.ime}} </h4>
+  <h4>{{student.prezime}}</h4>
+<table class="table-striped">
+  <tr>
+    <td class="alert-success">
+      Name
+    </td>
+    <td class="alert-success">
+      {{student.ime}} {{student.prezime}}
+    </td>
+  </tr>
+ <tr>
+   <td>Index</td>
+   <td>{{student.indeks}}</td>
+ </tr>
+  <tr>
+  <td class="alert-success">Bachelor`s program at FCSE&nbsp;&nbsp;&nbsp;</td>
+  <td class="alert-success">{{student.nasoka}}</td>
+  </tr>
+</table>
+  <div class="row top-buffer">
+    <div class="col-md-11 text-right" [routerLink]="['/details:', student.indeks]">
+      <button class="btn btn-primary clickable">
+        Edit
+      </button>
+    </div>
+  </div>
+</div>

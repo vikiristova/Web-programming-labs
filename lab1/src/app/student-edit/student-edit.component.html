@@ -1,0 +1,93 @@
+<div class="card top-buffer" [routerLink]="['/edit:', student.indeks]"
+                                class="nav-link"
+                                routerLinkActive="active">
+  <div class="card-header">
+    Editing: {{ currentStudent | studentName }}
+  </div>
+  <div class="card-body">
+    <div class="row">
+
+
+      <div class="col-md-8">
+        <div class="form-group row">
+          <label for="ime"
+                 class="col-sm-2 col-form-label">
+            Name
+          </label>
+          <div class="col-sm-10">
+            <input id="ime"
+                   type="text"
+                   required
+                   maxlength="50"
+                   minlength="5"
+                   class="form-control"
+                   [(ngModel)]="student.ime"
+                   #ime="ngModel"
+
+            />
+            <div *ngIf="ime.invalid && (ime.dirty || ime.touched)"
+                 class="alert alert-danger">
+
+              <div *ngIf="ime.errors.required">
+                Name is required.
+              </div>
+              <div *ngIf="ime.errors.maxlength">
+                The maximum length of the name is 20.
+              </div>
+              <div *ngIf="ime.errors.minlength">
+                The minimum length of the name is 5.
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+        <div class="form-group row">
+          <label for="nasoka"
+                 class="col-sm-2 col-form-label">
+            Nasoka
+          </label>
+          <div class="col-sm-10">
+        <textarea id="nasoka"
+                  type="text"
+                  required
+
+                  class="form-control"
+                  [(ngModel)]="student.nasoka"></textarea>
+          </div>
+          <div class="">
+
+          </div>
+        </div>
+
+
+        <div class="col-md-12">
+
+          <button class="btn btn-xs btn-success"
+                  *ngIf="!isEdit"
+                  [disabled]="ime.invalid"
+                  (click)="save()">
+            Create
+          </button>
+
+          <button class="btn btn-xs btn-primary"
+                  *ngIf="isEdit"
+                  (click)="edit()">
+            Edit
+          </button>
+
+          <button class="btn btn-xs btn-default"
+                  [routerLink]="['/view', student.indeks]">
+            Cancel
+          </button>
+        </div>
+
+      </div>
+
+
+  </div>
+</div>
+</div>

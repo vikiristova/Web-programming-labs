@@ -1,0 +1,42 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div ng-init="students = [{ime:'Viktorija', prezime:'Ristova'},
+                         {ime:'Darko', prezime:'Jovanov'},
+                         {ime:'Marko', prezime:'Markovski'},
+                         {ime:'Meri', prezime:'Aleksandrova']"></div>
+<div style="text-align:center; background-color: white">
+  <br/>
+  <h1 class="alert alert-success">
+    Welcome to {{title}}!
+  </h1>
+<br/>
+  <br/>
+</div>
+<h3 class="col-lg-offset-6">Make a selection from the students in this list:</h3>
+<br/>
+<input ng-model="searchText" placeholder="Filter student by last name"/>&nbsp;&nbsp;<button class="btn-success">Filter</button>
+<div class="col-lg-offset-9">
+<ul class="list-group">
+  <ul id="searchTextResults">
+    <li ng-repeat="student in students | filter:searchText" class="list-group-item" *ngFor="let student of students">
+      <a [routerLink]="['/list',student.ime]" class="nav-link" routerLinkActive="active" (click)="showStudent(student)">
+        {{student.ime}} {{student.prezime}}
+      </a>
+  </ul>
+</ul>
+</div>
+<hr/>
+<h2 class="alert alert-success alert dissmissable">The informations for the selected student will be shown below</h2>
+<div>
+<h1>Current student: {{currentStudent.ime}}</h1>
+<app-student-details [inputStudent]="currentStudent"
+                     *ngIf="currentStudent!==undefined"></app-student-details>
+</div>
+
+<hr/>
+
+  <div>
+    <app-student-edit [editingStudent]="currentStudent">
+      currentStudent
+    </app-student-edit>
+  </div>
+
